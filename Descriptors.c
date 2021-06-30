@@ -197,9 +197,12 @@ const USB_Descriptor_String_t ProductString =
     #elif DEVICE_PID == 0x0007
 	.Header                 = {.Size = USB_STRING_LEN(31), .Type = DTYPE_String},
     .UnicodeString          = L"Original Prusa CW1 (bootloader)"
+  #elif DEVICE_PID == 0x000E
+	.Header                 = {.Size = USB_STRING_LEN(32), .Type = DTYPE_String},
+  .UnicodeString          = L"Original Prusa CW1S (bootloader)"
 	#elif DEVICE_PID == 0x0036
     .Header                 = {.Size = USB_STRING_LEN(16), .Type = DTYPE_String},
-	.UnicodeString          = L"Arduino Leonardo" 
+	.UnicodeString          = L"Arduino Leonardo"
 	#elif DEVICE_PID == 0x0037
 	.Header                 = {.Size = USB_STRING_LEN(16), .Type = DTYPE_String},
 	.UnicodeString			= L"Arduino Micro   "
@@ -212,10 +215,10 @@ const USB_Descriptor_String_t ProductString =
 	#endif
 };
 
-const USB_Descriptor_String_t ManufNameString = 
+const USB_Descriptor_String_t ManufNameString =
 {
 	.Header					= {.Size = USB_STRING_LEN(28), .Type = DTYPE_String},
-	
+
 	#if DEVICE_VID == 0x2c99
 	.UnicodeString			= L"Prusa Research (prusa3d.com)"
 	#elif DEVICE_VID == 0x2341
@@ -312,7 +315,7 @@ uint16_t CALLBACK_USB_GetDescriptor(const uint16_t wValue,
 				Address = &LanguageString;
 				Size    = LanguageString.Header.Size;
 			}
-			else if (DescriptorNumber == DeviceDescriptor.ProductStrIndex) 
+			else if (DescriptorNumber == DeviceDescriptor.ProductStrIndex)
 			{
 				Address = &ProductString;
 				Size    = ProductString.Header.Size;

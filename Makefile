@@ -60,7 +60,9 @@ VID = 0x2c99
 # official "i3 MK3 MMU 2.0"
 #PID = 0x0003
 # official "Original Prusa CW1 (bootloader)"
-PID = 0x0007
+#PID = 0x0007
+# official "Original Prusa CW1S (bootloader)"
+PID = 0x000E
 
 # MCU name
 MCU = atmega32u4
@@ -127,7 +129,7 @@ FORMAT = ihex
 
 
 # Target file name (without extension).
-TARGET = Caterina
+TARGET = Caterina-CW1S
 
 
 # Object files directory
@@ -363,7 +365,7 @@ EXTMEMOPTS =
 #    -Map:      create map file
 #    --cref:    add cross reference to  map file
 LDFLAGS  = -Wl,-Map=$(TARGET).map,--cref
-LDFLAGS += -Wl,--section-start=.text=$(BOOT_START) $(BOOT_API_LD_FLAGS) 
+LDFLAGS += -Wl,--section-start=.text=$(BOOT_START) $(BOOT_API_LD_FLAGS)
 LDFLAGS += -Wl,--relax
 LDFLAGS += -Wl,--gc-sections
 LDFLAGS += $(EXTMEMOPTS)
@@ -724,7 +726,7 @@ checksource:
 			echo "Found Source File: $$f" ; \
 		else \
 			echo "Source File Not Found: $$f" ; \
-		fi; done 
+		fi; done
 
 
 # Create object files directory
@@ -739,4 +741,3 @@ $(shell mkdir $(OBJDIR) 2>/dev/null)
 .PHONY : all begin finish end sizebefore sizeafter gccversion \
 build elf hex eep lss sym coff extcoff doxygen clean          \
 clean_list clean_doxygen program debug gdb-config checksource
-
